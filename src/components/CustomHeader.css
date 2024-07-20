@@ -1,0 +1,35 @@
+@keyframes rotate {
+  from {
+    transform: rotate(0deg) scale(1.5);
+  }
+  to {
+    transform: rotate(360deg) scale(1.5);
+  }
+}
+
+.icon-rotate {
+  animation: rotate 0.5s ease-in-out;
+}
+
+.custom-header {
+  transition: 0.2s ease-in-out;
+}
+.custom-header:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.header-title {
+  font-weight: bold;
+  font-size: 17px;
+  color: white;
+  white-space: nowrap;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+  margin-bottom: 6px;
+}
+
+.header-title-collasped {
+  transition: opacity 0.3s ease; /* Specify what property to transition */
+  white-space: nowrap;
+  opacity: 0;
+}

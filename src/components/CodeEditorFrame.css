@@ -1,0 +1,37 @@
+/* CodeEditorFrame.css */
+
+.code-editor-frame {
+  border-radius: 0px;
+
+  overflow: hidden;
+  border: 1px solid rgb(209, 209, 209);
+}
+
+.code-editor-frame .ant-card-head {
+  background-color: #f0f2f5;
+  border-bottom: 1px solid #e8e8e8;
+  margin-bottom: 10px;
+  border-radius: 0px;
+}
+
+.code-editor-frame .ant-tabs-nav {
+}
+
+.code-editor-frame .ant-tabs-tab {
+  padding: 12px 16px;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+
+.code-editor-frame .ant-tabs-tab:hover {
+}
+
+.code-editor-frame .ant-tabs-tab-active {
+}
+
+.code-editor-frame .ant-tabs-tab-active:hover {
+}
+
+.code-editor-frame .ant-card-body {
+  padding: 0;
+}

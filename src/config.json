@@ -1,0 +1,10 @@
+{
+  "TEST_CASE_CREATION": {
+    "DEFAULT_VALUE": "import unittest\nfrom main import Solution\n\nclass TestTwoSum(unittest.TestCase):\n    def setUp(self):\n        self.solution = Solution()\n\n    def test_basic_case(self):\n        self.assertEqual(self.solution.twoSum([2, 7, 11, 15], 9), [0, 1])\n\n    def test_no_solution(self):\n        self.assertEqual(self.solution.twoSum([2, 7, 11, 15], 30), [])\n\n    def test_negative_numbers(self):\n        self.assertEqual(self.solution.twoSum([-1, -2, -3, -4, -5], -8), [2, 4])\n\n    def test_duplicate_numbers(self):\n        self.assertEqual(self.solution.twoSum([3, 3], 6), [0, 1])\n\n    def test_zero_target(self):\n        self.assertEqual(self.solution.twoSum([-2, 0, 1, 2], 0), [0, 3])\n\n    def test_large_numbers(self):\n        self.assertEqual(self.solution.twoSum([1000000, 1000001, 1000002], 2000003), [1, 2])\n\nif __name__ == '__main__':\n    unittest.main()",
+    "DEFAULT_THEME": "vs"
+  },
+  "SUBMISSION_TEMPLATE_CREATION": {
+    "DEFAULT_VALUE": "class Solution:\n    def twoSum(self, nums, target):\n        \"\"\"\n        :type nums: List[int]\n        :type target: int\n        :rtype: List[int]\n       ",
+    "DEFAULT_THEME": "vs"
+  }
+}

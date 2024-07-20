@@ -1,0 +1,22 @@
+#auth-header {
+  display: flex;
+  flex-direction: row;
+  height: 50px;
+  padding-bottom: 17px;
+  color: rgb(0, 0, 0);
+  border-bottom: 1px solid rgb(255, 255, 255);
+  gap: 30px;
+  justify-content: center;
+  margin-right: 280px;
+}
+
+#auth-header a {
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+  border-bottom: 2px solid transparent;
+}
+
+#auth-header a.active {
+  color: var(--primary-color);
+  border-bottom: 2px solid var(--primary-color);
+}

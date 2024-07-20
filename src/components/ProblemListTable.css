@@ -1,0 +1,42 @@
+.problem-list-container {
+}
+
+.problem-list-table {
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.problem-list-table .ant-table-thead > tr > th {
+  font-weight: bold;
+}
+
+.problem-list-table .ant-table-tbody > tr:hover > td {
+  background-color: #e6f7ff;
+}
+
+.problem-list-table .ant-table-row {
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.problem-list-table .ant-btn {
+}
+
+.problem-list-table .ant-btn:hover {
+  background-color: #1890ff;
+  color: white;
+}
+
+.problem-list-table .ant-pagination-item-active {
+  border-color: #1890ff;
+}
+
+.problem-list-table .ant-pagination-item-active a {
+  color: #1890ff;
+}
+
+.problem-list-table .ant-table-column-sorter-up.active,
+.problem-list-table .ant-table-column-sorter-down.active {
+  color: #1890ff;
+}

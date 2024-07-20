@@ -1,0 +1,123 @@
+.test-page-container {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  padding-left: 24px;
+  padding-right: 0px;
+  padding-bottom: 0;
+  padding-top: 0px;
+  width: 100%;
+  flex-basis: 1 1;
+  max-height: 100%;
+}
+
+.code-editor {
+  border-radius: 4px;
+  border-top: 0px;
+}
+
+.tabs-extra-demo-button {
+  margin-right: 25px;
+}
+
+.ant-row-rtl .tabs-extra-demo-button {
+  margin-right: 25px;
+  margin-left: 16px;
+}
+.tab-left {
+  min-width: 700px;
+}
+.tab-right {
+  width: 100%;
+  min-width: 860px;
+  display: flex;
+}
+
+/* Add this to your Test.css file or create a new CSS file and import it */
+.tab-right .test-reset-button {
+  color: #cccccc; /* Light grey text color */
+  margin-right: 8px; /* Space between buttons */
+  transition: all 0.3s ease; /* Smooth transition for hover effects */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tab-right .test-reset-button:hover {
+  background-color: #2a2d2e !important; /* Slightly lighter on hover */
+  color: #aaaaaa !important; /* White text on hover */
+}
+
+.tab-right .ant-tabs-ink-bar {
+  background: none !important;
+}
+
+.tab-right .test-reset-button:active {
+  color: #aaaaaa !important;
+}
+
+/* Style for the icon */
+.tab-right .test-reset-button .anticon {
+}
+.language-button {
+  border-radius: 0px;
+}
+.code-editor {
+  border-radius: 4px;
+}
+.tab-right .ant-tabs-nav {
+  background-color: #1e1e1e; /* VS Code dark theme background color */
+  border-bottom: 1px solid #333; /* Slight border to separate from editor */
+  margin: 0px !important;
+}
+.tab-right .ant-tabs-nav::before {
+  width: 0% !important;
+  height: 0% !important;
+}
+
+.tab-right .ant-tabs-tab {
+  color: #d4d4d4; /* Light grey text color */
+
+  border: none !important;
+  margin: 0px !important;
+
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+}
+
+.tab-right .ant-tabs-tab:hover {
+  color: #ffffff;
+}
+
+.tab-right .ant-tabs-tab.ant-tabs-tab-active {
+  background-color: #1e1e1e; /* Same as nav background when active */
+  border-bottom: none !important; /* Blue border for active tab */
+  color: #ffffff !important;
+}
+
+/* Style for the language dropdown and save button */
+.tab-right .ant-tabs-extra-content {
+  background-color: #1e1e1e;
+  padding: 0 10px;
+}
+
+.tab-right .language-button,
+.tab-right .save-button {
+  background-color: #252526;
+  color: #d4d4d4;
+  border: 1px solid #3c3c3c;
+  margin-left: 10px;
+  margin-right: 10px;
+  border-radius: 0px;
+}
+
+.tab-right .language-button:hover,
+.tab-right .save-button:hover {
+  background-color: #4b4b4b !important;
+  color: #ffffff !important;
+  border: 1px solid #2a2d2e !important;
+}
+
+.tab-right .ant-tabs-tab-btn {
+  color: white;
+}

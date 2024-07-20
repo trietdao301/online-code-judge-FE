@@ -1,0 +1,73 @@
+.menu-item {
+  display: flex;
+  flex-direction: row;
+  text-decoration: none;
+  opacity: 0.8;
+  height: 50px;
+  color: rgb(192, 192, 192);
+  align-items: center;
+  padding-left: 30px;
+  gap: 10px;
+  transition: 0.3s ease;
+}
+.menu-item.active {
+  background-color: #1677ff;
+  opacity: 1;
+  color: white;
+}
+.menu-item:hover {
+  text-decoration: none;
+}
+.menu-item:focus {
+  background-color: #1677ff;
+  opacity: 1;
+  color: white;
+}
+.menu-item-collapsed {
+  display: flex;
+  flex-direction: row;
+  text-decoration: none;
+  opacity: 0.8;
+  height: 70px;
+  color: rgb(192, 192, 192);
+  align-items: center;
+  padding-left: 30px;
+  gap: 10px;
+  transition: 0.3s ease;
+}
+.menu-item-collapsed.active {
+  background-color: #4b4b4b;
+  opacity: 1;
+  color: white;
+}
+.menu-item-collapsed:focus {
+  background-color: #4b4b4b;
+  opacity: 1;
+  color: white;
+}
+.menu-icon {
+  transition: 0.3s ease;
+  color: white;
+  font-size: 15px;
+}
+
+.menu-icon-collapsed {
+  transition: 0.3s ease;
+  font-size: 19px;
+  color: rgb(255, 255, 255);
+}
+.menu-item-name {
+  color: white;
+  white-space: nowrap;
+}
+.menu-item-name:hover {
+  color: white;
+}
+
+.menu-item-name-collapsed {
+  transition: opacity 0.3s ease; /* Specify what property to transition */
+  white-space: nowrap;
+  opacity: 0;
+  display: none; /* Hide the div completely */
+  pointer-events: none;
+}
