@@ -2,17 +2,23 @@
 }
 
 .problem-list-table {
-  background-color: white;
-  border-radius: 8px;
+  box-shadow:
+    0 2px 2px 0 rgba(0, 0, 0, 0.14),
+    0 3px 1px -2px rgba(0, 0, 0, 0.2),
+    0 1px 5px 0 rgba(0, 0, 0, 0.12);
   overflow: hidden;
+  background-color: #202940;
 }
 
 .problem-list-table .ant-table-thead > tr > th {
   font-weight: bold;
 }
 
+.problem-list-table .ant-table-thead > tr > th::before {
+  background-color: hsla(0, 0%, 71%, 0.1) !important;
+}
+
 .problem-list-table .ant-table-tbody > tr:hover > td {
-  background-color: #e6f7ff;
 }
 
 .problem-list-table .ant-table-row {
@@ -20,23 +26,7 @@
   transition: all 0.3s;
 }
 
-.problem-list-table .ant-btn {
-}
 
-.problem-list-table .ant-btn:hover {
-  background-color: #1890ff;
-  color: white;
-}
-
-.problem-list-table .ant-pagination-item-active {
-  border-color: #1890ff;
-}
-
-.problem-list-table .ant-pagination-item-active a {
-  color: #1890ff;
-}
-
-.problem-list-table .ant-table-column-sorter-up.active,
-.problem-list-table .ant-table-column-sorter-down.active {
-  color: #1890ff;
+.ant-btn-primary {
+  box-shadow: none;
 }

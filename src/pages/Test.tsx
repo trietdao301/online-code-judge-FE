@@ -9,6 +9,7 @@ import {
 import ProblemInfo from "../components/ProblemInfo";
 import {
   Button,
+  ConfigProvider,
   Dropdown,
   MenuProps,
   Space,
@@ -113,7 +114,6 @@ export default function AddTestToProblem() {
     const selectedItem = LANGUAGE_ITEMS.find((item) => item.key === e.key);
     if (selectedItem) {
       setSelectedLanguage(selectedItem.label as Language);
-      message.info(`Selected ${selectedItem.label}`);
     }
   };
 
@@ -199,6 +199,13 @@ export default function AddTestToProblem() {
     left: <></>,
     right: (
       <>
+         <ConfigProvider theme={{
+                        token: {
+                          colorPrimary: "#DEFFD3",
+                     
+                        },
+
+                      }}> 
         <Dropdown menu={menuProps}>
           <Button className="language-button">
             <Space>
@@ -206,7 +213,8 @@ export default function AddTestToProblem() {
               <DownOutlined />
             </Space>
           </Button>
-        </Dropdown>
+          </Dropdown>
+          </ConfigProvider>
         <Button
           type="text"
           className="test-reset-button"
@@ -235,18 +243,18 @@ export default function AddTestToProblem() {
   type PositionType = "left" | "right";
   return (
     <div className="test-page-container">
-      <Tabs
-        className="tab-left"
-        tabBarExtraContent={OperationsSlotLeft}
-        items={itemsLeft}
-      />
-      <Tabs
-        className="tab-right"
-        tabBarExtraContent={OperationsSlotRight}
-        items={itemsRight}
-        activeKey={currentTab}
-        onChange={onChange}
-      />
+        <Tabs
+          className="tab-left"
+          tabBarExtraContent={OperationsSlotLeft}
+          items={itemsLeft}
+        />
+        <Tabs
+          className="tab-right"
+          tabBarExtraContent={OperationsSlotRight}
+          items={itemsRight}
+          activeKey={currentTab}
+          onChange={onChange}
+        />   
     </div>
   );
 }

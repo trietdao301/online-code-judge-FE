@@ -11,36 +11,7 @@ const root = ReactDOM.createRoot(
 );
 
 root.render(
-//   <ConfigProvider
-//   theme={{
-//     // 1. Use dark algorithm
-//     algorithm: theme.darkAlgorithm,
-//     token: {
-//       // Seed Token
-//       colorPrimary: '#eb2f96',
-//       borderRadius: 2,
-
-
-//     },
-//     components: {
-//       Button: {
-//         colorPrimary: '#00b96b',
-//       },
-//       Input: {
-//         colorPrimary: '#eb2f96',
-//       },
-//       Tabs: {
-//         colorPrimary: '#eb2f96',
-//         algorithm: theme.darkAlgorithm,
-//       },
-//       Layout: {
-//         colorPrimary: '#eb2f96',
-//       }
-//     },
-//   }}
-// >
   <AuthProvider>
     <RouterProvider router={router} />
-    </AuthProvider>
-    // </ConfigProvider>
+  </AuthProvider>,
 );

@@ -22,16 +22,6 @@ export const CustomHeader: React.FC<CustomHeaderProps> = ({ collapsed }) => {
 
   return (
     <div
-      style={{
-        fontSize: 15,
-        color: "white",
-        display: "flex",
-        flexDirection: "row",
-        gap: 15,
-        height: 64,
-        cursor: "pointer",
-        alignItems: "center",
-      }}
       onClick={handleClick}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -47,7 +37,7 @@ export const CustomHeader: React.FC<CustomHeaderProps> = ({ collapsed }) => {
             transform: "scale(1.5)",
             transition: "all 0.2s ease-in",
             opacity: collapsed ? 1 : 0,
-            marginLeft: collapsed ? "12px" : "0px",
+            paddingRight: collapsed ? "30px" : "0px",
           }}
           className={collapsed ? "icon-rotate" : ""}
         />
@@ -57,7 +47,7 @@ export const CustomHeader: React.FC<CustomHeaderProps> = ({ collapsed }) => {
             transform: "scale(1.5)",
             transition: "all 0.2s ease-in",
             opacity: collapsed ? 0 : 1,
-            marginLeft: collapsed ? "12px" : "0px",
+            paddingRight: collapsed ? "30px" : "0px",
           }}
           className={collapsed ? "icon-rotate" : ""}
         />

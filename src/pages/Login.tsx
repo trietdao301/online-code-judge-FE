@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import LoginForm from "../components/LoginForm";
-import { Layout, message } from "antd";
+import { ConfigProvider, Layout, message } from "antd";
 import { Content } from "antd/es/layout/layout";
 import { createSession, CreateSessionRequest } from "../services";
 import { useNavigate } from "react-router-dom";
@@ -19,10 +19,13 @@ const Login: React.FC = () => {
   }, [user, role, navigate]);
   const navigateBasedOnRole = (userRole: string | null) => {
     switch (userRole) {
-      case "admin":
+      case "Admin":
         navigate("/page/problem-list");
         break;
-      case "user":
+      case "ProblemSetter":
+        navigate("/page/problem-list");
+        break;
+      case "Contestant":
         navigate("/page/problem-list");
         break;
       default:

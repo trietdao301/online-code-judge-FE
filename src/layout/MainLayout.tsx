@@ -11,9 +11,8 @@ import {
   FormOutlined,
   SettingOutlined,
   LogoutOutlined,
-  PoweroffOutlined,
-  CloseCircleOutlined,
-  ExportOutlined,
+  GlobalOutlined,
+
 } from "@ant-design/icons";
 import type { Collapse, MenuProps } from "antd";
 import { Breadcrumb, Button, Layout, Menu, theme } from "antd";
@@ -24,7 +23,7 @@ import "../components/MenuItem.css";
 import { Outlet, useNavigate } from "react-router-dom";
 import { useLayoutContext } from "../contexts/LayoutContext";
 import { useAuth } from "../contexts/AuthContext";
-
+import { ProblemSetterRole, AdminRole, ContestantRole } from "../services";
 const { Header, Content, Footer, Sider } = Layout;
 
 type MenuItem = Required<MenuProps>["items"][number];
@@ -48,7 +47,7 @@ const App: React.FC = () => {
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
-  const { logout } = useAuth(); // Use the logout function from AuthContext
+  const { logout, role } = useAuth(); // Use the logout function from AuthContext
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -56,24 +55,27 @@ const App: React.FC = () => {
     navigate("../login"); // Redirect to login page after logout
   };
   const { header } = useLayoutContext();
-
+  
   return (
     <Layout style={{ minHeight: "100vh" }}>
       <Sider
-        width="280px"
+        width="250px"
         collapsible
         collapsed={collapsed}
         onCollapse={(value) => setCollapsed(value)}
+        className="sider"
       >
         <CustomHeader collapsed={collapsed} />
 
-        <MenuItem
+        {role === AdminRole || role === ProblemSetterRole &&
+          <MenuItem
           content="New problem"
           collapsed={collapsed}
           Icon={PlusCircleOutlined}
           className="menu-item"
           link="../page/new-problem"
-        />
+        />}
+
         <MenuItem
           content="Problems"
           collapsed={collapsed}
@@ -81,27 +83,42 @@ const App: React.FC = () => {
           className="menu-item"
           link="../page/problem-list"
         />
-        <MenuItem
+        {role === AdminRole || role === ContestantRole &&
+          <MenuItem
           content="Submissions"
           collapsed={collapsed}
           Icon={FormOutlined}
           className="menu-item"
           link="../page/submissions"
-        />
-        <MenuItem
+          />}
+        
+          <MenuItem
+            content="Contest"
+            collapsed={collapsed}
+            Icon={GlobalOutlined}
+            className="menu-item"
+            link="/page/contest"
+          />
+        
+          <MenuItem
           content="Accounts"
           collapsed={collapsed}
           Icon={UserOutlined}
           className="menu-item"
           link="/page/accounts"
-        />
-        <MenuItem
+          />
+
+        {role === AdminRole &&
+          <MenuItem
           content="Settings"
           collapsed={collapsed}
           Icon={SettingOutlined}
           className="menu-item"
           link="/page/settings"
-        />
+        />}
+        
+
+
         <MenuItem
           content="Project Github"
           collapsed={collapsed}
@@ -136,6 +153,7 @@ const App: React.FC = () => {
               minHeight: 850,
               background: colorBgContainer,
               borderRadius: borderRadiusLG,
+              minWidth: 1000,
             }}
           >
             <Outlet />

@@ -4,10 +4,11 @@ import {
   createSession,
   CreateSessionRequest,
   CreateSessionResponse,
+  Role,
 } from "../services";
 import { message } from "antd";
 
-type Role = "admin" | "user";
+
 
 type User = {
   username: string;

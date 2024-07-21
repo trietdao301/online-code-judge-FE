@@ -5,10 +5,14 @@ import {
   getProblemList,
   Problem,
   deleteProblem,
+  AdminRole,
+  ProblemSetterRole,
 } from "../services";
 import { useNavigate } from "react-router-dom";
 import "./ProblemListTable.css";
 import { DeleteOutlined, FileAddOutlined } from "@ant-design/icons";
+import ConfigProvider, { ConfigConsumer } from "antd/es/config-provider";
+import { useAuth } from "../contexts/AuthContext";
 type ProblemItem = {
   key: number;
   UUID: string; // Add this line
@@ -22,12 +26,13 @@ type ProblemItem = {
 export default function ProblemListTable() {
   const navigate = useNavigate();
   const [problemList, setProblemList] = useState<ProblemItem[]>([]);
+  const { role } = useAuth();
   const fetchProblemList = async () => {
     try {
       const problemListResponse: GetProblemListResponse =
         await getProblemList();
       if (problemListResponse.TotalCount == 0) {
-        message.warning("No problem found ");
+        
       } else if (problemListResponse) {
         const problemArray: ProblemItem[] =
           problemListResponse.ListOfProblem.map((eachProblem, index) => ({
@@ -36,7 +41,8 @@ export default function ProblemListTable() {
             name: eachProblem.displayName,
             createdTime: eachProblem.createdAt,
             updatedTime: eachProblem.updatedAt,
-            author: eachProblem.authorAccountUUID,
+
+            author: eachProblem.authorName,
             addTest: (
               <Button
                 type="dashed"
@@ -71,6 +77,39 @@ export default function ProblemListTable() {
       message.error("Failed to delete problem");
     }
   };
+
+  const columnsForContestant = [
+    {
+      title: "#",
+      dataIndex: "key",
+      key: "key",
+      width: "10%",
+    },
+    {
+      title: "Name",
+      dataIndex: "name",
+      key: "name",
+      width: "20.66%",
+    },
+    {
+      title: "Author",
+      dataIndex: "author",
+      key: "author",
+      width: "20.66%",
+    },
+    {
+      title: "Created Time",
+      dataIndex: "createdTime",
+      key: "createdTime",
+      width: "20.66%",
+    },
+    {
+      title: "Updated Time",
+      dataIndex: "updatedTime",
+      key: "updatedTime",
+      width: "20.66%",
+    },
+  ];
 
   const columns = [
     {
@@ -119,6 +158,17 @@ export default function ProblemListTable() {
               icon={<FileAddOutlined />}
             />
           </Tooltip>
+          <ConfigProvider theme={{
+            token: {
+              
+              
+            },
+            components: {
+              Button: {
+                colorPrimary: "#00b96b",
+              }
+            }
+          }}>
           <Popconfirm
             title="Are you sure you want to delete this problem?"
             onConfirm={(e) => {
@@ -137,6 +187,8 @@ export default function ProblemListTable() {
               />
             </Tooltip>
           </Popconfirm>
+          </ConfigProvider>
+          
         </span>
       ),
     },
@@ -152,14 +204,32 @@ export default function ProblemListTable() {
 
   return (
     <div>
-      <Table
+      <ConfigProvider theme={{
+        components: {
+          Table: {
+            rowHoverBg: "#1a2035",
+           
+          }
+        }
+      }}>
+        {role === AdminRole || role === ProblemSetterRole ? <Table
+          className="problem-list-table"
+          size="middle"
+          dataSource={problemList}
+          columns={columns}
+          onRow={onRowClick}
+          scroll={{ x: true }}
+        /> :  <Table
         className="problem-list-table"
-        size="middle"
+        size="large"
         dataSource={problemList}
-        columns={columns}
+        columns={columnsForContestant}
         onRow={onRowClick}
         scroll={{ x: true }}
-      />
+      />}
+        
+      </ConfigProvider>
+      
     </div>
   );
 }

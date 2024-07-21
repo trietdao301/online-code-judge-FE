@@ -1,8 +1,16 @@
 import React, { useEffect, useState } from "react";
 import "./Problem.css";
 import Editor from "@monaco-editor/react";
-import { Button, Dropdown, MenuProps, message, Space } from "antd";
 import {
+  Button,
+  ConfigProvider,
+  Dropdown,
+  MenuProps,
+  message,
+  Space,
+} from "antd";
+import {
+  CloseCircleOutlined,
   DownOutlined,
   FileOutlined,
   JavaOutlined,
@@ -12,6 +20,8 @@ import {
   UploadOutlined,
 } from "@ant-design/icons";
 import {
+  AdminRole,
+  ContestantRole,
   createSubmission,
   CreateSubmissionRequest,
   CreateSubmissionResponse,
@@ -30,16 +40,10 @@ const LANGUAGE_ITEMS = [
 type Language = "Python" | "Java" | "Javascript";
 
 export default function RightContainerProblem() {
-  const [selectedLanguage, setSelectedLanguage] = useState<string>("Python");
+  const [selectedLanguage, setSelectedLanguage] = useState<string>("Choose");
+  const {role} = useAuth()
   const [submissionSnippet, setSubmissionSnippet] =
-    useState<string>(`class Solution(object):
-    def twoSum(self, nums, target):
-        """
-        :type nums: List[int]
-        :type target: int
-        :rtype: List[int]
-        """
-        `);
+    useState<string>("");
   const {
     problemUUID,
     codeContent,
@@ -72,16 +76,15 @@ export default function RightContainerProblem() {
                 setSubmissionSnippet(response.CodeSnippet);
                 console.log(response.CodeSnippet);
               }
+              return
             } catch (err) {
               message.error("failed to fetch problem snippet");
+              return
             }
           };
           fetchSubmissionSnippet(item.submissionSnippetUUID);
-        } else {
-          message.warning("no problem template for " + selectedItem.label);
-          setSubmissionSnippet("");
-        }
-      });
+        } 
+      })
     }
   };
 
@@ -125,15 +128,34 @@ export default function RightContainerProblem() {
         <Button type="text" icon={<FileOutlined />}>
           Load File
         </Button>
+        {role === AdminRole || role === ContestantRole ? 
         <Button
+        type="text"
+        icon={
+          disableSubmit ? (
+            <LoadingOutlined style={{ color: "#00D45A" }} />
+          ) : (
+            <UploadOutlined />
+          )
+        }
+        onClick={handleSubmit}
+        disabled={disableSubmit}
+        style={{ color: disableSubmit ? "#00D45A" : "white" }}
+      >
+        Submit
+          </Button>
+          : 
+          <Button
           type="text"
-          icon={disableSubmit ? <LoadingOutlined /> : <UploadOutlined />}
-          style={{ color: "#1677ff" }}
+          icon={<CloseCircleOutlined />}
           onClick={handleSubmit}
-          disabled={disableSubmit}
+          disabled={true}
+          style={{ color: "#FF4625" }}
         >
           Submit
-        </Button>
+            </Button>
+          }
+        
       </div>
 
       <Editor
@@ -141,7 +163,7 @@ export default function RightContainerProblem() {
         language={selectedLanguage.toLowerCase()}
         value={submissionSnippet}
         theme="vs-dark"
-        height={"100%"}
+        height={"795px"}
         width={"100%"}
         onChange={(value) => setCodeContent(value ?? "")}
       />

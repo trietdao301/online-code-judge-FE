@@ -1,19 +1,30 @@
-@keyframes rotate {
-  from {
-    transform: rotate(0deg) scale(1.5);
-  }
-  to {
-    transform: rotate(360deg) scale(1.5);
-  }
-}
-
-.icon-rotate {
-  animation: rotate 0.5s ease-in-out;
-}
-
 .custom-header {
   transition: 0.2s ease-in-out;
+  font-size: 15px;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  height: 64px;
+  cursor: pointer;
+  align-items: center;
+  position: relative;
+  padding-left: 20px;
+  padding-top: 15px;
+  margin-bottom: 25px;
 }
+
+.custom-header::after {
+  content: "";
+  position: absolute;
+  bottom: -8px; /* Adjust this value to control the space between the header and the line */
+  height: 1px;
+  background-color: hsla(0, 0%, 71%, 0.3); /* Adjust this color as needed */
+  bottom: -8px;
+  width: calc(100% - 30px);
+  right: 15px;
+}
+
 .custom-header:hover {
   background-color: rgba(255, 255, 255, 0.05);
 }

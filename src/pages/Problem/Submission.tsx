@@ -17,7 +17,16 @@ import {
   kimbieLight,
   railscasts,
 } from "react-syntax-highlighter/dist/esm/styles/hljs";
-import { Button, message, Modal, Space, Table, TableProps, Tag } from "antd";
+import {
+  Button,
+  ConfigProvider,
+  message,
+  Modal,
+  Space,
+  Table,
+  TableProps,
+  Tag,
+} from "antd";
 import { useAuth } from "../../contexts/AuthContext";
 import "./Problem.css";
 
@@ -220,57 +229,66 @@ export default function SubmissionDisplay() {
   return (
     <div className="problem-submission">
       <>
-        <Table
-          className="submission-table"
-          columns={columns}
-          dataSource={submissions}
-          expandable={{
-            expandedRowRender: (submission) => (
-              <div className="expanded-row-animation">
-                <SyntaxHighlighter
-                  language={submission.language.toLowerCase()}
-                  style={kimbieLight}
-                  customStyle={{
-                    margin: 0,
-                    borderRadius: "4px",
-                    maxHeight: "300px",
-                    overflowY: "auto",
-                  }}
-                >
-                  {submission.result}
-                </SyntaxHighlighter>
-              </div>
-            ),
+        <ConfigProvider
+          theme={{
+            token: {
+              colorPrimary: "#00D45A",
+            },
           }}
-          pagination={{
-            pageSize: 6,
-            showSizeChanger: false,
-            showQuickJumper: false,
-            current: currentPage,
-            onChange: (page) => setCurrentPage(page),
-          }}
-        />
-        <Modal
-          title="Submission Content"
-          open={isModalVisible}
-          onOk={handleOk}
-          onCancel={handleCancel}
-          className="code-editor-modal"
-          width={800} // Adjust as needed
-          footer={null}
         >
-          <SyntaxHighlighter
-            language={modalLanguage} // Change this based on the submission language
-            style={railscasts}
-            customStyle={{
-              margin: 0,
-              padding: "16px",
-              borderRadius: "0 0 4px 4px",
+          <Table
+            className="submission-table"
+            columns={columns}
+            dataSource={submissions}
+            expandable={{
+              expandedRowRender: (submission) => (
+                <div className="expanded-row-animation">
+                  <SyntaxHighlighter
+                    language={submission.language.toLowerCase()}
+                    style={kimbieLight}
+                    customStyle={{
+                      margin: 0,
+                      borderRadius: "4px",
+                      maxHeight: "300px",
+                      overflowY: "auto",
+                      overflowX: "auto",
+                    }}
+                  >
+                    {submission.result}
+                  </SyntaxHighlighter>
+                </div>
+              ),
             }}
+            pagination={{
+              pageSize: 6,
+              showSizeChanger: false,
+              showQuickJumper: false,
+              current: currentPage,
+              onChange: (page) => setCurrentPage(page),
+            }}
+          />
+          <Modal
+            title="Submission Content"
+            open={isModalVisible}
+            onOk={handleOk}
+            onCancel={handleCancel}
+            className="code-editor-modal"
+            width={800} // Adjust as needed
+            footer={null}
           >
-            {currentSubmission}
-          </SyntaxHighlighter>
-        </Modal>
+            <SyntaxHighlighter
+              language={modalLanguage} // Change this based on the submission language
+              style={railscasts}
+              customStyle={{
+                margin: 0,
+                padding: "16px",
+                borderRadius: "0 0 4px 4px",
+              }}
+            >
+              {currentSubmission}
+            </SyntaxHighlighter>
+          </Modal>
+        </ConfigProvider>
       </>
     </div>
   );

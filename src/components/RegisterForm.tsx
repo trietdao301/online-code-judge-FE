@@ -1,29 +1,53 @@
-import React, { useState } from "react";
-import { Button, Checkbox, Col, Form, Input, Row } from "antd";
-import { NavLink } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Button, Checkbox, Col, Form, Input, message, notification, Row } from "antd";
+import { NavLink, useNavigate } from "react-router-dom";
 import "./RegisterForm.css";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
-import { CreateAccountRequest } from "../services";
+import { createAccount, CreateAccountRequest, CreateAccountResponse } from "../services";
 
 const RegisterForm: React.FC = () => {
   const [form] = Form.useForm();
   const [componentDisabled, setComponentDisabled] = useState<boolean>(true);
-
-  const onFinish = (values: CreateAccountRequest) => {
+  const navigate = useNavigate()
+  const onFinish = async (values:any) => {
     console.log("Received values of form: ", values);
+    const  request : CreateAccountRequest = {
+      Username: values.Username,
+      Password: values.Password,
+      Role: values.Role[0]
+    }
+    try {
+      const res = await createAccount(request)
+      message.success("Created Successfully: " + res.data.Username)
+      navigate("/")
+    } 
+    catch (error) {
+      message.error("Creatation Failed")
+    }
   };
 
   const updateDisabled = () => {
     const values = form.getFieldsValue();
-    const { Username, Password, Confirm, roles } = values;
+    const { Username, Password, Confirm, Role } = values;
     setComponentDisabled(
       !Username ||
         !Password ||
         !Confirm ||
         Password !== Confirm ||
-        !roles ||
-        roles.length === 0,
+        !Role ||
+        Role.length !== 1
     );
+  };
+
+  useEffect(() => {
+    updateDisabled();
+  }, [form]);
+
+  const onRoleChange = (checkedValues: string[]) => {
+    if (checkedValues.length > 1) {
+      form.setFieldsValue({ Role: [checkedValues[checkedValues.length - 1]] });
+    }
+    updateDisabled();
   };
 
   return (
@@ -98,32 +122,32 @@ const RegisterForm: React.FC = () => {
         />
       </Form.Item>
 
-      <Form.Item name={"role"}>
-        <Row gutter={8} align="middle">
-          <Col span={12}>
-            <Button
-              type="primary"
-              htmlType="submit"
-              style={{ width: "100%" }}
-              disabled={componentDisabled}
-            >
-              Register
-            </Button>
-          </Col>
-          <Col span={12}>
-            <Checkbox.Group style={{ width: "100%" }}>
+      <Row gutter={8} align="middle">
+        <Col span={12}>
+          <Button
+            type="primary"
+            htmlType="submit"
+            style={{ width: "100%" }}
+            disabled={componentDisabled}
+          >
+            Register
+          </Button>
+        </Col>
+        <Col span={12}>
+          <Form.Item name="Role" noStyle>
+            <Checkbox.Group style={{ width: "100%" }} onChange={onRoleChange}>
               <Col>
                 <Col span={24}>
                   <Checkbox value="ProblemSetter">Problem Setter</Checkbox>
                 </Col>
-                <Col span={12}>
+                <Col span={24}>
                   <Checkbox value="Contestant">Contestant</Checkbox>
                 </Col>
               </Col>
             </Checkbox.Group>
-          </Col>
-        </Row>
-      </Form.Item>
+          </Form.Item>
+        </Col>
+      </Row>
     </Form>
   );
 };

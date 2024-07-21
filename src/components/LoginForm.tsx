@@ -28,7 +28,6 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSubmit }) => {
         <Input
           prefix={<UserOutlined className="site-form-item-icon" />}
           placeholder="Username"
-          className="site-form-input"
           onChange={(e) => setComponentDisabled(e.target.value === "")}
         />
       </Form.Item>

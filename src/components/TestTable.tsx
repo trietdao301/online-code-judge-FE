@@ -1,4 +1,4 @@
-import { Button, message, Modal, Space, Table, TableProps, Tag } from "antd";
+import { Button, ConfigProvider, message, Modal, Space, Table, TableProps, Tag } from "antd";
 import React, { useEffect, useState } from "react";
 import { Test } from "../services/test-case";
 import { CodeEditor } from "./CodeEditor/CodeEditor";
@@ -7,6 +7,7 @@ import {
   getTestCaseListByProblemUUID,
   GetTestCaseListResponse,
 } from "../services/test-case";
+import { Editor } from "@monaco-editor/react";
 
 interface TestTableType {
   key: string | undefined;
@@ -54,9 +55,18 @@ export default function TestTable({ problemUUID }: TestTableProps) {
                   createdAt: test.createdAt,
                   testContent: (
                     <>
-                      <Button type="dashed" onClick={() => showModal(test)}>
-                        View
-                      </Button>
+                      <ConfigProvider theme={{
+                        token: {
+                          colorPrimary: "#DEFFD3",
+                     
+                        },
+
+                      }}>
+                        <Button style={{border:"none"}}type="default" onClick={() => showModal(test)}>
+                          View
+                        </Button>
+                      </ConfigProvider>
+
                     </>
                   ),
                 };
@@ -113,19 +123,20 @@ export default function TestTable({ problemUUID }: TestTableProps) {
   return (
     <>
       <Table columns={columns} dataSource={tableList} />
-      <Modal
-        title="Test Info"
-        open={isModalOpen}
-        onOk={handleOk}
-        onCancel={handleCancel}
+        <Modal
+          title="Test Info"
+          open={isModalOpen}
+          onOk={handleOk}
+          onCancel={handleCancel}
         width={900}
-      >
-        <CodeEditor
+        footer={false}
+        >
+        <Editor
           theme={"vs-dark"}
           height="700px"
           width="850px"
           value={selectedTest?.testFileContent || ""}
-          collapsed={false}
+          language={selectedTest?.language}
         />
       </Modal>
     </>

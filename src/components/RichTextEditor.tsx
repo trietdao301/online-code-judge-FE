@@ -7,7 +7,7 @@ import {
 import React, { useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-
+import "./RichTextEditor.css";
 const modules = {
   toolbar: [
     [{ header: [1, 2, false] }],
@@ -55,18 +55,21 @@ export const RichTextEditor: React.FC<RichTextEditorProps> = ({
   return (
     <>
       <ReactQuill
-        theme="snow"
+   
         onChange={(value) =>
           onContentValue ? handleOnChangeValue(value) : undefined
         }
         modules={modules}
         formats={formats}
-        style={style ? style : {}}
+        
+        className="rich-text-editor"
         onFocus={() => setFocus(true)}
         onBlur={() => setFocus(false)}
       />
 
-      <div style={{ display: "flex" }}>
+      <div
+        style={{ display: "flex", backgroundColor: "#d2daff", padding: "11px" }}
+      >
         {value !== "" ? (
           <SyncOutlined
             spin

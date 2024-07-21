@@ -16,6 +16,7 @@ export type CreateNewProblemRequest = {
   DisplayName: string;
   Description: string;
   AuthorAccountUUID: string;
+  AuthorName: string;
   TimeLimitInMillisecond: Number;
   MemoryLimitInByte: Number;
 };
@@ -36,6 +37,7 @@ export type Problem = {
   description: string;
   testCaseList: TestCaseData[];
   authorAccountUUID: string;
+  authorName: string;
   timeLimitInMillisecond: Number;
   memoryLimitInByte: Number;
   createdAt: string;
@@ -76,16 +78,20 @@ export const deleteProblem = async (problemUUID: string) => {
   return response.data;
 };
 
-export const getProblemList = async (): Promise<GetProblemListResponse> => {
+export const getProblemList = async (): Promise<any> => {
   try {
     const token = getToken();
-    const response = await axios.get(`${BASE_URL}/problem-list`, {
+    const response = await axios.get<GetProblemListResponse>(`${BASE_URL}/problem-list`, {
       headers: { Authorization: `Bearer ${token}` },
     });
-    return response.data as GetProblemListResponse;
+    return response.data;
   } catch (err) {
     console.error("Failed to fetch problem list:", err);
-    message.error("Failed to fetch problem list");
+    if (axios.isAxiosError(err) && err.response) {
+      message.error(err.response.data || "An error occurred");
+    } else {
+      message.error('An unknown error occurred');
+    }
     return { ListOfProblem: [], TotalCount: 0 };
   }
 };

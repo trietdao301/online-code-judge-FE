@@ -13,9 +13,12 @@ import {
 import { useProblemContext } from "../../contexts/ProblemContext";
 import Description from "./Description";
 import Submission from "./Submission";
+import { useAuth } from "../../contexts/AuthContext";
+import { AdminRole, ContestantRole } from "../../services";
 
 export default function LeftContainerProblem() {
   const { activeTab, setActiveTab } = useProblemContext();
+  const { role } = useAuth();
   const items: TabsProps["items"] = [
     {
       key: "1",
@@ -30,12 +33,33 @@ export default function LeftContainerProblem() {
       icon: <CarryOutOutlined />,
     },
   ];
+
+  const itemsForProblemSetter: TabsProps["items"] = [
+    {
+      key: "1",
+      label: "Description",
+      children: <Description />,
+      icon: <FileTextOutlined />,
+    },
+    {
+      key: "2",
+      label: "Submission",
+      children: <></>,
+      icon: <CarryOutOutlined />,
+      disabled: true,
+      
+    },
+  ];
+
   const onChange = (key: string) => {
     setActiveTab(key);
   };
   return (
     <div className="left-problem-container">
-      <Tabs items={items} onChange={onChange} activeKey={activeTab} />
+      {role === AdminRole || role === ContestantRole ?
+        <Tabs items={items} onChange={onChange} activeKey={activeTab} />
+        : <Tabs items={itemsForProblemSetter} onChange={onChange} activeKey={activeTab} />
+      }
     </div>
   );
 }

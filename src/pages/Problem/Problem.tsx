@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useLayoutContext } from "../../contexts/LayoutContext";
 import { Problem as ProblemType, getProblem } from "../../services";
-import { message } from "antd";
+import { ConfigProvider, message } from "antd";
 import LeftContainer from "./LeftContainerProblem";
 import RightContainer from "./RightContainerProblem";
 import "./Problem.css";
@@ -51,8 +51,22 @@ export default function Problem() {
 
   return (
     <div className={"problem-container"}>
-      <LeftContainer />
-      <RightContainer />
+      <ConfigProvider
+        theme={{
+          // 1. Use dark algorithm
+
+          token: {
+            // Seed Token
+            colorPrimary: "#000E2E",
+            borderRadius: 2,
+
+            colorText: "#FFFFFF",
+          },
+        }}
+      >
+        <LeftContainer />
+        <RightContainer />
+      </ConfigProvider>
     </div>
   );
 }

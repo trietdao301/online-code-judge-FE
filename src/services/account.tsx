@@ -4,6 +4,12 @@ import { error } from "console";
 
 const BASE_URL = "http://localhost:8080";
 
+export const AdminRole = "Admin";
+export const ProblemSetterRole = "ProblemSetter";
+export const ContestantRole = "Contestant";
+
+export type Role = typeof AdminRole | typeof ProblemSetterRole | typeof ContestantRole;
+
 export type CreateSessionRequest = {
   Username: string;
   Password: string;
@@ -11,7 +17,7 @@ export type CreateSessionRequest = {
 export type CreateSessionResponse = {
   Username: string;
   Token: string;
-  Role: string;
+  Role: Role;
   AccountUUID: string;
 };
 
@@ -23,9 +29,8 @@ export type CreateAccountRequest = {
 
 export type CreateAccountResponse = {
   Username: string;
-  Role: string;
-  CreatedAt: string;
-  UpdatedAt: string;
+  Role: Role;
+
 };
 
 export const createSession = async (req: CreateSessionRequest) => {
@@ -39,16 +44,14 @@ export const createSession = async (req: CreateSessionRequest) => {
 };
 
 export const createAccount = async (
-  req: CreateAccountRequest,
-): Promise<CreateAccountResponse> => {
-  return axios
-    .post(`${BASE_URL}/account`, req)
-    .then((res) => {
-      console.log(res.data);
-      return res.data as CreateAccountResponse;
-    })
-    .catch((error) => {
-      console.error("Error creating account:", error);
-      throw error;
-    });
+  req: CreateAccountRequest
+): Promise<any> => {
+  try {
+    const response = await axios.post<any>(`${BASE_URL}/account`, req);
+ 
+    return response
+  } catch (error) {
+    console.error("Error creating account:", error);
+    throw error
+  }
 };
