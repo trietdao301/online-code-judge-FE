@@ -212,7 +212,7 @@ export default function ProblemListTable() {
           }
         }
       }}>
-        {role === AdminRole || role === ProblemSetterRole ? <Table
+        {(role === AdminRole || role === ProblemSetterRole )? <Table
           className="problem-list-table"
           size="middle"
           dataSource={problemList}

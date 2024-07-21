@@ -42,7 +42,7 @@ export const ProblemList: React.FC = () => {
           },
         }}
       >
-        {role === AdminRole || role === ProblemSetterRole &&
+        {(role === AdminRole || role === ProblemSetterRole) &&
            <Button
            icon={<EditFilled />}
            iconPosition={"start"}

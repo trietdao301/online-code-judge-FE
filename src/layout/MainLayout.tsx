@@ -49,7 +49,7 @@ const App: React.FC = () => {
   } = theme.useToken();
   const { logout, role } = useAuth(); // Use the logout function from AuthContext
   const navigate = useNavigate();
-
+console.log(role)
   const handleLogout = () => {
     logout();
     navigate("../login"); // Redirect to login page after logout
@@ -67,13 +67,13 @@ const App: React.FC = () => {
       >
         <CustomHeader collapsed={collapsed} />
 
-        {role === AdminRole || role === ProblemSetterRole &&
+        {(role === AdminRole || role === ProblemSetterRole) &&
           <MenuItem
           content="New problem"
           collapsed={collapsed}
           Icon={PlusCircleOutlined}
           className="menu-item"
-          link="../page/new-problem"
+          link="/page/new-problem"
         />}
 
         <MenuItem
@@ -81,15 +81,15 @@ const App: React.FC = () => {
           collapsed={collapsed}
           Icon={QuestionCircleOutlined}
           className="menu-item"
-          link="../page/problem-list"
+          link="/page/problem-list"
         />
-        {role === AdminRole || role === ContestantRole &&
+        {(role === AdminRole || role === ContestantRole) &&
           <MenuItem
           content="Submissions"
           collapsed={collapsed}
           Icon={FormOutlined}
           className="menu-item"
-          link="../page/submissions"
+          link="/page/submissions"
           />}
         
           <MenuItem
