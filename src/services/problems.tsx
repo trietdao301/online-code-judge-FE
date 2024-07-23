@@ -1,8 +1,8 @@
 import { message } from "antd";
 import axios from "axios";
-import { REACT_APP_BASE_URL } from ".";
+import REACT_APP_BASE_URL from "../config.json"
 
-const BASE_URL = REACT_APP_BASE_URL || "http://localhost:8080";
+const BASE_URL = "http://94.72.127.243:8080";
 
 export type DataType = {
   key: string;
