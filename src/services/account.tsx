@@ -2,7 +2,7 @@ import { message } from "antd";
 import axios from "axios";
 import { error } from "console";
 
-const BASE_URL = "http://localhost:8080";
+const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:8080";
 
 export const AdminRole = "Admin";
 export const ProblemSetterRole = "ProblemSetter";
