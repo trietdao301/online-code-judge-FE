@@ -1,8 +1,9 @@
 import axios from "axios";
 import Test from "../pages/Test";
 import { message } from "antd";
+import { REACT_APP_BASE_URL } from ".";
 
-const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:8080";
+const BASE_URL = REACT_APP_BASE_URL || "http://localhost:8080";
 
 export type Test = {
   UUID: string;
