@@ -3,7 +3,7 @@ import Test from "../pages/Test";
 import { message } from "antd";
 import REACT_APP_BASE_URL from "../config.json"
 
-const BASE_URL = "http://94.72.127.243:8080";
+const BASE_URL = "https://94.72.127.243:443";
 
 export type Test = {
   UUID: string;
