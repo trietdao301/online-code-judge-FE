@@ -4,7 +4,7 @@ import { error } from "console";
 import configData from "../config.json";
 
 //const BASE_URL =  "http://localhost:8080";
-const BASE_URL =   "http://94.72.127.243:443"
+const BASE_URL =   "https://94.72.127.243"
 export const AdminRole = "Admin";
 export const ProblemSetterRole = "ProblemSetter";
 export const ContestantRole = "Contestant";

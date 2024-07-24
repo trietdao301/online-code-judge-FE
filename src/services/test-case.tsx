@@ -3,7 +3,7 @@ import Test from "../pages/Test";
 import { message } from "antd";
 import configData from "../config.json";
 
-const BASE_URL =   "http://94.72.127.243:443"
+const BASE_URL =   "https://94.72.127.243"
 
 export type Test = {
   UUID: string;

@@ -2,7 +2,7 @@ import { message } from "antd";
 import axios from "axios";
 import configData from "../config.json";
 
-const BASE_URL =   "http://94.72.127.243:443"
+const BASE_URL =  "https://94.72.127.243"
 
 export type CreateTestCaseAndSubmissionSnippetRequest = {
   CodeSnippet: string;
