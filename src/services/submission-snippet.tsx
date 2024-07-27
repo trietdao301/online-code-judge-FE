@@ -3,7 +3,7 @@ import axios from "axios";
 import configData from "../config.json";
 
 
-const BASE_URL =   "https://94.72.127.243"
+const BASE_URL =   "https://coodbox.com"
 export type GetSubmissionSnippetRequest = {
   SubmissionSnippetUUID: string;
 };

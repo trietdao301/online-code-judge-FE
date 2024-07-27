@@ -3,7 +3,7 @@ import Test from "../pages/Test";
 import { message } from "antd";
 import configData from "../config.json";
 
-const BASE_URL =   "https://94.72.127.243"
+const BASE_URL =   "https://coodbox.com"
 
 export type Test = {
   UUID: string;
