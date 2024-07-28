@@ -234,6 +234,12 @@ export default function SubmissionDisplay() {
             token: {
               colorPrimary: "#00D45A",
             },
+            components: {
+              Table: {
+               
+                colorTextHeading:"#8bbf9e"
+              }
+            }
           }}
         >
           <Table

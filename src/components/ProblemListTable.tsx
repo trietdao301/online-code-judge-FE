@@ -206,8 +206,11 @@ export default function ProblemListTable() {
           components: {
             Table: {
               rowHoverBg: "#1a2035",
+              colorText: "#FFFF",
+              colorTextHeading:"#ffcf89"
             },
           },
+          
         }}
       >
         {role === AdminRole || role === ProblemSetterRole ? (
