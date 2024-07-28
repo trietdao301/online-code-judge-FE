@@ -1,28 +1,40 @@
 import React, { useState, useEffect } from "react";
-import { Button, Checkbox, Col, Form, Input, message, notification, Row } from "antd";
+import {
+  Button,
+  Checkbox,
+  Col,
+  Form,
+  Input,
+  message,
+  notification,
+  Row,
+} from "antd";
 import { NavLink, useNavigate } from "react-router-dom";
 import "./RegisterForm.css";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
-import { createAccount, CreateAccountRequest, CreateAccountResponse } from "../services";
+import {
+  createAccount,
+  CreateAccountRequest,
+  CreateAccountResponse,
+} from "../services";
 
 const RegisterForm: React.FC = () => {
   const [form] = Form.useForm();
   const [componentDisabled, setComponentDisabled] = useState<boolean>(true);
-  const navigate = useNavigate()
-  const onFinish = async (values:any) => {
+  const navigate = useNavigate();
+  const onFinish = async (values: any) => {
     console.log("Received values of form: ", values);
-    const  request : CreateAccountRequest = {
+    const request: CreateAccountRequest = {
       Username: values.Username,
       Password: values.Password,
-      Role: values.Role[0]
-    }
+      Role: values.Role[0],
+    };
     try {
-      const res = await createAccount(request)
-      message.success("Created Successfully: " + res.data.Username)
-      navigate("/")
-    } 
-    catch (error) {
-      message.error("Creatation Failed")
+      const res = await createAccount(request);
+      message.success("Created Successfully: " + res.data.Username);
+      navigate("/");
+    } catch (error) {
+      message.error("Creatation Failed");
     }
   };
 
@@ -35,7 +47,7 @@ const RegisterForm: React.FC = () => {
         !Confirm ||
         Password !== Confirm ||
         !Role ||
-        Role.length !== 1
+        Role.length !== 1,
     );
   };
 

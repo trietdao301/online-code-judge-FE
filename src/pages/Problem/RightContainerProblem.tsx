@@ -41,9 +41,8 @@ type Language = "Python" | "Java" | "Javascript";
 
 export default function RightContainerProblem() {
   const [selectedLanguage, setSelectedLanguage] = useState<string>("Choose");
-  const {role} = useAuth()
-  const [submissionSnippet, setSubmissionSnippet] =
-    useState<string>("");
+  const { role } = useAuth();
+  const [submissionSnippet, setSubmissionSnippet] = useState<string>("");
   const {
     problemUUID,
     codeContent,
@@ -76,15 +75,15 @@ export default function RightContainerProblem() {
                 setSubmissionSnippet(response.CodeSnippet);
                 console.log(response.CodeSnippet);
               }
-              return
+              return;
             } catch (err) {
               message.error("failed to fetch problem snippet");
-              return
+              return;
             }
           };
           fetchSubmissionSnippet(item.submissionSnippetUUID);
-        } 
-      })
+        }
+      });
     }
   };
 
@@ -128,34 +127,23 @@ export default function RightContainerProblem() {
         <Button type="text" icon={<FileOutlined />}>
           Load File
         </Button>
-        {role === AdminRole || role === ContestantRole ? 
-        <Button
-        type="text"
-        icon={
-          disableSubmit ? (
-            <LoadingOutlined style={{ color: "#00D45A" }} />
-          ) : (
-            <UploadOutlined />
-          )
-        }
-        onClick={handleSubmit}
-        disabled={disableSubmit}
-        style={{ color: disableSubmit ? "#00D45A" : "white" }}
-      >
-        Submit
-          </Button>
-          : 
+        {role === AdminRole || role === ContestantRole && (
           <Button
-          type="text"
-          icon={<CloseCircleOutlined />}
-          onClick={handleSubmit}
-          disabled={true}
-          style={{ color: "#FF4625" }}
-        >
-          Submit
-            </Button>
-          }
-        
+            type="text"
+            icon={
+              disableSubmit ? (
+                <LoadingOutlined style={{ color: "#00D45A" }} />
+              ) : (
+                <UploadOutlined />
+              )
+            }
+            onClick={handleSubmit}
+            disabled={disableSubmit}
+            style={{ color: disableSubmit ? "#00D45A" : "white" }}
+          >
+            Submit
+          </Button>
+        )}
       </div>
 
       <Editor

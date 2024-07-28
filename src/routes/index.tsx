@@ -22,15 +22,11 @@ import { ConfigProvider, theme } from "antd";
 export const router = createBrowserRouter([
   {
     path: "/",
-    element:
-        <AuthLayout />,
+    element: <AuthLayout />,
     children: [
       {
         index: true,
-        element:  
-          
-              <Login />
-       
+        element: <Login />,
       },
       {
         path: "register",
@@ -44,42 +40,38 @@ export const router = createBrowserRouter([
       <ConfigProvider
         theme={{
           // 1. Use dark algorithm
-      
+
           token: {
             // Seed Token
-        
+
             borderRadius: 2,
-            colorBgBase: '#1a2035',
-            colorText:"#FFFFFF"
+            colorBgBase: "#1a2035",
+            colorText: "#FFFFFF",
           },
           components: {
             Button: {
-              
-              colorBgBase: '#00b96b',
-              colorBgContainer:'#00b96b'
+              colorBgBase: "#00b96b",
+              colorBgContainer: "#00b96b",
             },
-      
+
             Tabs: {
-              colorPrimary: '#eb2f96',
-              colorText:"#FFFFFF",
+              colorPrimary: "#eb2f96",
+              colorText: "#FFFFFF",
               algorithm: theme.darkAlgorithm,
             },
             Layout: {
-      
-              siderBg: '#1f283e',
-              triggerBg: '#293758',
-              bodyBg: '#1a2035',
-        
+              siderBg: "#1f283e",
+              triggerBg: "#293758",
+              bodyBg: "#1a2035",
             },
             Table: {
-              colorBgContainer: '#202940',
-              colorText: '#8b92a9',
-              colorTextHeading: '#8b92a9',
-              footerBg: '#202940',
-              borderColor: 'hsla(0,0%,71%,.1)',
-              headerBg: '#293553',
-            
-            }
+              colorBgContainer: "#202940",
+              colorText: "#8b92a9",
+              colorTextHeading: "#8b92a9",
+              footerBg: "#202940",
+              borderColor: "hsla(0,0%,71%,.1)",
+              headerBg: "#293553",
+            },
           },
         }}
       >
@@ -112,7 +104,7 @@ export const router = createBrowserRouter([
           },
           {
             path: "contest",
-            element:<Contest/>,
+            element: <Contest />,
           },
           {
             path: "accounts",
@@ -127,7 +119,7 @@ export const router = createBrowserRouter([
             path: "submissions",
             element: <Submissions />,
           },
-        ]
+        ],
       },
       {
         element: <PrivateRoute allowedRoles={["Admin", "ProblemSetter"]} />,
@@ -144,7 +136,6 @@ export const router = createBrowserRouter([
               </ProblemEditorProvider>
             ),
           },
-         
         ],
       },
     ],

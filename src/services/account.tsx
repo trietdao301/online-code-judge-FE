@@ -4,12 +4,15 @@ import { error } from "console";
 import configData from "../config.json";
 
 //const BASE_URL =  "http://localhost:8080";
-const BASE_URL =   "https://coodbox.com"
+const BASE_URL = "https://coodbox.com";
 export const AdminRole = "Admin";
 export const ProblemSetterRole = "ProblemSetter";
 export const ContestantRole = "Contestant";
 
-export type Role = typeof AdminRole | typeof ProblemSetterRole | typeof ContestantRole;
+export type Role =
+  | typeof AdminRole
+  | typeof ProblemSetterRole
+  | typeof ContestantRole;
 
 export type CreateSessionRequest = {
   Username: string;
@@ -31,7 +34,6 @@ export type CreateAccountRequest = {
 export type CreateAccountResponse = {
   Username: string;
   Role: Role;
-
 };
 
 export const createSession = async (req: CreateSessionRequest) => {
@@ -45,14 +47,14 @@ export const createSession = async (req: CreateSessionRequest) => {
 };
 
 export const createAccount = async (
-  req: CreateAccountRequest
+  req: CreateAccountRequest,
 ): Promise<any> => {
   try {
     const response = await axios.post<any>(`${BASE_URL}/account`, req);
- 
-    return response
+
+    return response;
   } catch (error) {
     console.error("Error creating account:", error);
-    throw error
+    throw error;
   }
 };

@@ -1,5 +1,11 @@
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
-import { Badge, Button, ConfigProvider, Descriptions, DescriptionsProps } from "antd";
+import {
+  Badge,
+  Button,
+  ConfigProvider,
+  Descriptions,
+  DescriptionsProps,
+} from "antd";
 import React, { useEffect } from "react";
 import "./ProblemInfo.css";
 import { formatMemory, formatTimeLimit, formatDateTime } from "../utils";
@@ -51,20 +57,26 @@ export default function ProblemInfo({
 
   return (
     <>
-      <ConfigProvider theme={{
-        components: {
-          Descriptions: {
-            
-          }
-        },
-        token: {
-         colorBgBase: "#FFFF",
-
-        }
-      }}>
-      <Descriptions className="description-table" labelStyle={{color:"white"}} bordered column={1} size="small" items={items} />
+      <ConfigProvider
+        theme={{
+          components: {
+            Descriptions: {},
+          },
+          token: {
+            colorBgBase: "#FFFF",
+          },
+        }}
+      >
+        <Descriptions
+          className="description-table"
+          labelStyle={{ color: "white" }}
+          bordered
+          column={1}
+          size="small"
+          items={items}
+        />
       </ConfigProvider>
-      
+
       <div className="description-buttons">
         <Button icon={<EditOutlined />}>Edit</Button>
         <Button icon={<DeleteOutlined />}>Delete</Button>

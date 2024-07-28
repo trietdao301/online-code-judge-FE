@@ -12,7 +12,6 @@ import {
   SettingOutlined,
   LogoutOutlined,
   GlobalOutlined,
-
 } from "@ant-design/icons";
 import type { Collapse, MenuProps } from "antd";
 import { Breadcrumb, Button, Layout, Menu, theme } from "antd";
@@ -49,13 +48,13 @@ const App: React.FC = () => {
   } = theme.useToken();
   const { logout, role } = useAuth(); // Use the logout function from AuthContext
   const navigate = useNavigate();
-console.log(role)
+  console.log(role);
   const handleLogout = () => {
     logout();
     navigate("../login"); // Redirect to login page after logout
   };
   const { header } = useLayoutContext();
-  
+
   return (
     <Layout style={{ minHeight: "100vh" }}>
       <Sider
@@ -67,14 +66,15 @@ console.log(role)
       >
         <CustomHeader collapsed={collapsed} />
 
-        {(role === AdminRole || role === ProblemSetterRole) &&
+        {(role === AdminRole || role === ProblemSetterRole) && (
           <MenuItem
-          content="New problem"
-          collapsed={collapsed}
-          Icon={PlusCircleOutlined}
-          className="menu-item"
-          link="/page/new-problem"
-        />}
+            content="New problem"
+            collapsed={collapsed}
+            Icon={PlusCircleOutlined}
+            className="menu-item"
+            link="/page/new-problem"
+          />
+        )}
 
         <MenuItem
           content="Problems"
@@ -83,41 +83,41 @@ console.log(role)
           className="menu-item"
           link="/page/problem-list"
         />
-        {(role === AdminRole || role === ContestantRole) &&
+        {(role === AdminRole || role === ContestantRole) && (
           <MenuItem
-          content="Submissions"
-          collapsed={collapsed}
-          Icon={FormOutlined}
-          className="menu-item"
-          link="/page/submissions"
-          />}
-        
-          <MenuItem
-            content="Contest"
+            content="Submissions"
             collapsed={collapsed}
-            Icon={GlobalOutlined}
+            Icon={FormOutlined}
             className="menu-item"
-            link="/page/contest"
+            link="/page/submissions"
           />
-        
-          <MenuItem
+        )}
+
+        <MenuItem
+          content="Contest"
+          collapsed={collapsed}
+          Icon={GlobalOutlined}
+          className="menu-item"
+          link="/page/contest"
+        />
+
+        <MenuItem
           content="Accounts"
           collapsed={collapsed}
           Icon={UserOutlined}
           className="menu-item"
           link="/page/accounts"
-          />
+        />
 
-        {role === AdminRole &&
+        {role === AdminRole && (
           <MenuItem
-          content="Settings"
-          collapsed={collapsed}
-          Icon={SettingOutlined}
-          className="menu-item"
-          link="/page/settings"
-        />}
-        
-
+            content="Settings"
+            collapsed={collapsed}
+            Icon={SettingOutlined}
+            className="menu-item"
+            link="/page/settings"
+          />
+        )}
 
         <MenuItem
           content="Project Github"

@@ -19,7 +19,7 @@ interface Problem {
 
 export const ProblemList: React.FC = () => {
   const { setHeader } = useLayoutContext();
-  const {role} = useAuth()
+  const { role } = useAuth();
   useEffect(() => {
     setHeader("Problem List");
   }, []);
@@ -42,17 +42,16 @@ export const ProblemList: React.FC = () => {
           },
         }}
       >
-        {(role === AdminRole || role === ProblemSetterRole) &&
-           <Button
-           icon={<EditFilled />}
-           iconPosition={"start"}
-           onClick={handleClick}
-           className="create-problem-button"
-         >
-           Create Problem
-         </Button>
-         }
-       
+        {(role === AdminRole || role === ProblemSetterRole) && (
+          <Button
+            icon={<EditFilled />}
+            iconPosition={"start"}
+            onClick={handleClick}
+            className="create-problem-button"
+          >
+            Create Problem
+          </Button>
+        )}
       </ConfigProvider>
       <ProblemListTable />
     </div>

@@ -32,7 +32,6 @@ export default function ProblemListTable() {
       const problemListResponse: GetProblemListResponse =
         await getProblemList();
       if (problemListResponse.TotalCount == 0) {
-        
       } else if (problemListResponse) {
         const problemArray: ProblemItem[] =
           problemListResponse.ListOfProblem.map((eachProblem, index) => ({
@@ -158,37 +157,35 @@ export default function ProblemListTable() {
               icon={<FileAddOutlined />}
             />
           </Tooltip>
-          <ConfigProvider theme={{
-            token: {
-              
-              
-            },
-            components: {
-              Button: {
-                colorPrimary: "#00b96b",
-              }
-            }
-          }}>
-          <Popconfirm
-            title="Are you sure you want to delete this problem?"
-            onConfirm={(e) => {
-              e?.stopPropagation();
-              handleDelete(record.UUID);
+          <ConfigProvider
+            theme={{
+              token: {},
+              components: {
+                Button: {
+                  colorPrimary: "#00b96b",
+                },
+              },
             }}
-            onCancel={(e) => e?.stopPropagation()}
-            okText="Yes"
-            cancelText="No"
           >
-            <Tooltip title="Delete problem">
-              <Button
-                type="text"
-                icon={<DeleteOutlined />}
-                onClick={(e) => e.stopPropagation()}
-              />
-            </Tooltip>
-          </Popconfirm>
+            <Popconfirm
+              title="Are you sure you want to delete this problem?"
+              onConfirm={(e) => {
+                e?.stopPropagation();
+                handleDelete(record.UUID);
+              }}
+              onCancel={(e) => e?.stopPropagation()}
+              okText="Yes"
+              cancelText="No"
+            >
+              <Tooltip title="Delete problem">
+                <Button
+                  type="text"
+                  icon={<DeleteOutlined />}
+                  onClick={(e) => e.stopPropagation()}
+                />
+              </Tooltip>
+            </Popconfirm>
           </ConfigProvider>
-          
         </span>
       ),
     },
@@ -204,32 +201,35 @@ export default function ProblemListTable() {
 
   return (
     <div>
-      <ConfigProvider theme={{
-        components: {
-          Table: {
-            rowHoverBg: "#1a2035",
-           
-          }
-        }
-      }}>
-        {(role === AdminRole || role === ProblemSetterRole )? <Table
-          className="problem-list-table"
-          size="middle"
-          dataSource={problemList}
-          columns={columns}
-          onRow={onRowClick}
-          scroll={{ x: true }}
-        /> :  <Table
-        className="problem-list-table"
-        size="large"
-        dataSource={problemList}
-        columns={columnsForContestant}
-        onRow={onRowClick}
-        scroll={{ x: true }}
-      />}
-        
+      <ConfigProvider
+        theme={{
+          components: {
+            Table: {
+              rowHoverBg: "#1a2035",
+            },
+          },
+        }}
+      >
+        {role === AdminRole || role === ProblemSetterRole ? (
+          <Table
+            className="problem-list-table"
+            size="middle"
+            dataSource={problemList}
+            columns={columns}
+            onRow={onRowClick}
+            scroll={{ x: true }}
+          />
+        ) : (
+          <Table
+            className="problem-list-table"
+            size="large"
+            dataSource={problemList}
+            columns={columnsForContestant}
+            onRow={onRowClick}
+            scroll={{ x: true }}
+          />
+        )}
       </ConfigProvider>
-      
     </div>
   );
 }

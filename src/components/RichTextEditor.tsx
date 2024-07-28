@@ -55,13 +55,11 @@ export const RichTextEditor: React.FC<RichTextEditorProps> = ({
   return (
     <>
       <ReactQuill
-   
         onChange={(value) =>
           onContentValue ? handleOnChangeValue(value) : undefined
         }
         modules={modules}
         formats={formats}
-        
         className="rich-text-editor"
         onFocus={() => setFocus(true)}
         onBlur={() => setFocus(false)}

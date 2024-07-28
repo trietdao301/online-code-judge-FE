@@ -2,8 +2,8 @@ import { message } from "antd";
 import axios from "axios";
 import configData from "../config.json";
 
-const BASE_URL =   "https://coodbox.com"
-
+const BASE_URL = "https://coodbox.com";
+//const BASE_URL =  "http://localhost:8080";
 export type DataType = {
   key: string;
   language: string;
@@ -82,16 +82,19 @@ export const deleteProblem = async (problemUUID: string) => {
 export const getProblemList = async (): Promise<any> => {
   try {
     const token = getToken();
-    const response = await axios.get<GetProblemListResponse>(`${BASE_URL}/problem-list`, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
+    const response = await axios.get<GetProblemListResponse>(
+      `${BASE_URL}/problem-list`,
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      },
+    );
     return response.data;
   } catch (err) {
     console.error("Failed to fetch problem list:", err);
     if (axios.isAxiosError(err) && err.response) {
       message.error(err.response.data || "An error occurred");
     } else {
-      message.error('An unknown error occurred');
+      message.error("An unknown error occurred");
     }
     return { ListOfProblem: [], TotalCount: 0 };
   }

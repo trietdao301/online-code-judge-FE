@@ -8,8 +8,6 @@ import {
 } from "../services";
 import { message } from "antd";
 
-
-
 type User = {
   username: string;
   accountUUID: string;

@@ -3,8 +3,8 @@ import Test from "../pages/Test";
 import { message } from "antd";
 import configData from "../config.json";
 
-const BASE_URL =   "https://coodbox.com"
-
+const BASE_URL = "https://coodbox.com";
+//const BASE_URL =  "http://localhost:8080";
 export type Test = {
   UUID: string;
   ofProblemUUID: string;
@@ -26,28 +26,27 @@ export const getTestCaseByUUID = async (testUUID: string) => {
     });
     console.log(response.data);
     return response.data;
-  }
-  catch (error) {
-    message.error("fail to get test case")
+  } catch (error) {
+    message.error("fail to get test case");
     return {
-      Test: {
-      
-    }}
+      Test: {},
+    };
   }
 };
 
-export const getTestCaseListByProblemUUID = async (problemUUID: string): Promise<GetTestCaseListResponse> => {
+export const getTestCaseListByProblemUUID = async (
+  problemUUID: string,
+): Promise<GetTestCaseListResponse> => {
   try {
     const response = await axios.get<GetTestCaseListResponse>(
       `${BASE_URL}/test-case-list/${problemUUID}`,
       {
         headers: { Authorization: `Bearer ${token}` },
-      }
+      },
     );
     return response.data;
-  }
-  catch (error) {
-    console.error('Error fetching test case list:', error);
+  } catch (error) {
+    console.error("Error fetching test case list:", error);
     // Return a valid GetTestCaseListResponse with an empty TestCaseList
     return { TestCaseList: [] };
   }

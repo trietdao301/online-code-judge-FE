@@ -1,4 +1,13 @@
-import { Button, ConfigProvider, message, Modal, Space, Table, TableProps, Tag } from "antd";
+import {
+  Button,
+  ConfigProvider,
+  message,
+  Modal,
+  Space,
+  Table,
+  TableProps,
+  Tag,
+} from "antd";
 import React, { useEffect, useState } from "react";
 import { Test } from "../services/test-case";
 import { CodeEditor } from "./CodeEditor/CodeEditor";
@@ -55,18 +64,21 @@ export default function TestTable({ problemUUID }: TestTableProps) {
                   createdAt: test.createdAt,
                   testContent: (
                     <>
-                      <ConfigProvider theme={{
-                        token: {
-                          colorPrimary: "#DEFFD3",
-                     
-                        },
-
-                      }}>
-                        <Button style={{border:"none"}}type="default" onClick={() => showModal(test)}>
+                      <ConfigProvider
+                        theme={{
+                          token: {
+                            colorPrimary: "#DEFFD3",
+                          },
+                        }}
+                      >
+                        <Button
+                          style={{ border: "none" }}
+                          type="default"
+                          onClick={() => showModal(test)}
+                        >
                           View
                         </Button>
                       </ConfigProvider>
-
                     </>
                   ),
                 };
@@ -123,14 +135,14 @@ export default function TestTable({ problemUUID }: TestTableProps) {
   return (
     <>
       <Table columns={columns} dataSource={tableList} />
-        <Modal
-          title="Test Info"
-          open={isModalOpen}
-          onOk={handleOk}
-          onCancel={handleCancel}
+      <Modal
+        title="Test Info"
+        open={isModalOpen}
+        onOk={handleOk}
+        onCancel={handleCancel}
         width={900}
         footer={false}
-        >
+      >
         <Editor
           theme={"vs-dark"}
           height="700px"

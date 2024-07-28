@@ -199,22 +199,22 @@ export default function AddTestToProblem() {
     left: <></>,
     right: (
       <>
-         <ConfigProvider theme={{
-                        token: {
-                          colorPrimary: "#DEFFD3",
-                     
-                        },
-
-                      }}> 
-        <Dropdown menu={menuProps}>
-          <Button className="language-button">
-            <Space>
-              {selectedLanguage}
-              <DownOutlined />
-            </Space>
-          </Button>
+        <ConfigProvider
+          theme={{
+            token: {
+              colorPrimary: "#DEFFD3",
+            },
+          }}
+        >
+          <Dropdown menu={menuProps}>
+            <Button className="language-button">
+              <Space>
+                {selectedLanguage}
+                <DownOutlined />
+              </Space>
+            </Button>
           </Dropdown>
-          </ConfigProvider>
+        </ConfigProvider>
         <Button
           type="text"
           className="test-reset-button"
@@ -243,18 +243,18 @@ export default function AddTestToProblem() {
   type PositionType = "left" | "right";
   return (
     <div className="test-page-container">
-        <Tabs
-          className="tab-left"
-          tabBarExtraContent={OperationsSlotLeft}
-          items={itemsLeft}
-        />
-        <Tabs
-          className="tab-right"
-          tabBarExtraContent={OperationsSlotRight}
-          items={itemsRight}
-          activeKey={currentTab}
-          onChange={onChange}
-        />   
+      <Tabs
+        className="tab-left"
+        tabBarExtraContent={OperationsSlotLeft}
+        items={itemsLeft}
+      />
+      <Tabs
+        className="tab-right"
+        tabBarExtraContent={OperationsSlotRight}
+        items={itemsRight}
+        activeKey={currentTab}
+        onChange={onChange}
+      />
     </div>
   );
 }

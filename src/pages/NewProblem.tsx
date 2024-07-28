@@ -51,8 +51,8 @@ export default function NewProblem() {
   const [memoryLimit, setMemoryLimit] = useState<number>(1);
   const [memoryLimitUnit, setMemoryLimitUnit] = useState<string>("Gigabyte");
   const { setHeader } = useLayoutContext();
-  const { user } = useAuth()
-  const navigate = useNavigate()
+  const { user } = useAuth();
+  const navigate = useNavigate();
   useEffect(() => {
     setHeader("Problem Editor");
   }, []);
@@ -62,7 +62,7 @@ export default function NewProblem() {
         DisplayName: name,
         Description: richEditorValue,
         AuthorName: user.username,
-        AuthorAccountUUID: user.accountUUID ,
+        AuthorAccountUUID: user.accountUUID,
         TimeLimitInMillisecond: getTimeLimitInMilliseconds(
           timeLimit,
           timeLimitUnit,
@@ -77,7 +77,7 @@ export default function NewProblem() {
         message.error("Failed to create problem");
         // Handle error
       }
-  
+
       console.log(name);
       console.log(richEditorValue);
       console.log(timeLimit);
@@ -86,8 +86,8 @@ export default function NewProblem() {
       console.log(memoryLimitUnit);
     }
     if (!user) {
-      message.error("token expired")
-      navigate('/')
+      message.error("token expired");
+      navigate("/");
     }
   };
 
@@ -95,21 +95,22 @@ export default function NewProblem() {
     <div className="new-problem-container">
       <div className="problem-details">
         <label>Name</label>
-        
+
         <ConfigProvider
           theme={{
             token: {
-              colorBgBase: "#d2daff",  
+              colorBgBase: "#d2daff",
             },
             components: {
               Input: {
-                colorBorder:"none",
+                colorBorder: "none",
                 activeBorderColor: "#ccc9fc",
                 hoverBorderColor: "white",
-                colorTextDescription:"#0000"
-              }
-            }
-        }}>
+                colorTextDescription: "#0000",
+              },
+            },
+          }}
+        >
           <Input
             className="name-input"
             onChange={(e) => setName(e.target.value)}
@@ -120,7 +121,7 @@ export default function NewProblem() {
             }
           />
         </ConfigProvider>
-        
+
         <label>Description</label>
         <RichTextEditor onContentValue={setRichEditorValue} />
 
@@ -133,14 +134,14 @@ export default function NewProblem() {
                   InputNumber: {
                     addonBg: "#485985",
                     colorBorder: "#212A42",
-                    activeShadow:"	0 0 0 2px #B622F7",
+                    activeShadow: "	0 0 0 2px #B622F7",
                     handleBg: "#FFF",
                   },
                 },
                 token: {
                   colorBgBase: "#485985",
                   colorPrimary: "#FFFF",
-                }
+                },
               }}
             >
               <InputNumber
@@ -150,32 +151,30 @@ export default function NewProblem() {
                     theme={{
                       token: {
                         colorBgBase: "#334B89",
-                        
-                    },
-                    components: {
-                      Select: {
-                        optionActiveBg: "#7700AB",
-                      
-                        optionSelectedColor: "#FFFF",
-                        optionSelectedBg: "#B60FFF",
-                      
                       },
-                    },
-                  }}>
-                    <Select
-                    className="select-problem-editor"
-                    defaultValue={timeLimitUnit}
-                    style={{ width: 87 }}
-                    onChange={setTimeLimitUnit}
+                      components: {
+                        Select: {
+                          optionActiveBg: "#7700AB",
+
+                          optionSelectedColor: "#FFFF",
+                          optionSelectedBg: "#B60FFF",
+                        },
+                      },
+                    }}
                   >
-                    {TIME_UNITS.map((unit) => (
-                      <Option key={unit.value} value={unit.value}>
-                        {unit.label}
-                      </Option>
-                    ))}
-                  </Select>
-                    </ConfigProvider>
-                  
+                    <Select
+                      className="select-problem-editor"
+                      defaultValue={timeLimitUnit}
+                      style={{ width: 87 }}
+                      onChange={setTimeLimitUnit}
+                    >
+                      {TIME_UNITS.map((unit) => (
+                        <Option key={unit.value} value={unit.value}>
+                          {unit.label}
+                        </Option>
+                      ))}
+                    </Select>
+                  </ConfigProvider>
                 }
                 defaultValue={timeLimit}
                 onChange={(value) => setTimeLimit(value as number)}
@@ -190,76 +189,75 @@ export default function NewProblem() {
                   InputNumber: {
                     addonBg: "#485985",
                     colorBorder: "#212A42",
-                    activeShadow:"	0 0 0 2px #B622F7",
+                    activeShadow: "	0 0 0 2px #B622F7",
                     handleBg: "#FFF",
                   },
                 },
                 token: {
                   colorBgBase: "#485985",
                   colorPrimary: "#FFFF",
-                }
+                },
               }}
             >
               <InputNumber
-              style={{ width: "150px" }}
+                style={{ width: "150px" }}
                 addonAfter={
                   <ConfigProvider
-                  theme={{
-                    token: {
-                      colorBgBase: "#334B89",
-                      
-                  },
-                  components: {
-                    Select: {
-                      optionActiveBg: "#7700AB",
-                    
-                      optionSelectedColor: "#FFFF",
-                      optionSelectedBg: "#B60FFF",
-                    
-                    },
-                  },
-                }}>
-                <Select
-                  defaultValue={memoryLimitUnit}
-                  style={{ width: 87 }}
-                  onChange={setMemoryLimitUnit}
-                >
-                  {MEMORY_UNITS.map((unit) => (
-                    <Option key={unit.value} value={unit.value}>
-                      {unit.label}
-                    </Option>
-                  ))}
+                    theme={{
+                      token: {
+                        colorBgBase: "#334B89",
+                      },
+                      components: {
+                        Select: {
+                          optionActiveBg: "#7700AB",
+
+                          optionSelectedColor: "#FFFF",
+                          optionSelectedBg: "#B60FFF",
+                        },
+                      },
+                    }}
+                  >
+                    <Select
+                      defaultValue={memoryLimitUnit}
+                      style={{ width: 87 }}
+                      onChange={setMemoryLimitUnit}
+                    >
+                      {MEMORY_UNITS.map((unit) => (
+                        <Option key={unit.value} value={unit.value}>
+                          {unit.label}
+                        </Option>
+                      ))}
                     </Select>
-                    </ConfigProvider>
-              }
-              defaultValue={memoryLimit}
-              onChange={(value) => setMemoryLimit(value as number)}
-            />
+                  </ConfigProvider>
+                }
+                defaultValue={memoryLimit}
+                onChange={(value) => setMemoryLimit(value as number)}
+              />
             </ConfigProvider>
-            
           </div>
         </div>
-        
+
         <div className="time-memory-limit">
-        <ConfigProvider
-          theme={{
-            token: {
-              colorPrimary:"#334b89",  
-            },
-            components: {
-              Button: {
-                primaryShadow:" 0 6px 12px rgba(0, 0, 0, 0.15)"
-             }
-            }
-        }}>
-          <Button
-            type="primary"
-            className="save-button-problem-editor"
-            onClick={handleSubmit}
+          <ConfigProvider
+            theme={{
+              token: {
+                colorPrimary: "#334b89",
+              },
+              components: {
+                Button: {
+                  primaryShadow: " 0 6px 12px rgba(0, 0, 0, 0.15)",
+                },
+              },
+            }}
           >
-            Save
+            <Button
+              type="primary"
+              className="save-button-problem-editor"
+              onClick={handleSubmit}
+            >
+              Save
             </Button>
-            </ConfigProvider>
+          </ConfigProvider>
         </div>
       </div>
     </div>

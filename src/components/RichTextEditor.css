@@ -1,11 +1,10 @@
 .rich-text-editor {
   height: 400px;
-  background-color:#d2daff;
-  color:black;
+  background-color: #d2daff;
+  color: black;
 }
 
 .rich-text-editor .ql-toolbar {
-  border:1px solid #ccc9fc;
-  color:white;
+  border: 1px solid #ccc9fc;
+  color: white;
 }
-

@@ -41,14 +41,6 @@ export default function LeftContainerProblem() {
       children: <Description />,
       icon: <FileTextOutlined />,
     },
-    {
-      key: "2",
-      label: "Submission",
-      children: <></>,
-      icon: <CarryOutOutlined />,
-      disabled: true,
-      
-    },
   ];
 
   const onChange = (key: string) => {
@@ -56,10 +48,15 @@ export default function LeftContainerProblem() {
   };
   return (
     <div className="left-problem-container">
-      {role === AdminRole || role === ContestantRole ?
+      {role === AdminRole || role === ContestantRole ? (
         <Tabs items={items} onChange={onChange} activeKey={activeTab} />
-        : <Tabs items={itemsForProblemSetter} onChange={onChange} activeKey={activeTab} />
-      }
+      ) : (
+        <Tabs
+          items={itemsForProblemSetter}
+          onChange={onChange}
+          activeKey={activeTab}
+        />
+      )}
     </div>
   );
 }
