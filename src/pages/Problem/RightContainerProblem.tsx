@@ -127,7 +127,7 @@ export default function RightContainerProblem() {
         <Button type="text" icon={<FileOutlined />}>
           Load File
         </Button>
-        {role === AdminRole || role === ContestantRole && (
+        {(role === AdminRole || role === ContestantRole) && 
           <Button
             type="text"
             icon={
@@ -143,7 +143,7 @@ export default function RightContainerProblem() {
           >
             Submit
           </Button>
-        )}
+        }
       </div>
 
       <Editor
