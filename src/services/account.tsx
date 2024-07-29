@@ -3,8 +3,9 @@ import axios from "axios";
 import { error } from "console";
 import configData from "../config.json";
 
-//const BASE_URL =  "http://localhost:8080";
-const BASE_URL = "https://api.coodbox.com";
+
+const BASE_URL = process.env.REACT_APP_API_BASE_URL || "http://localhost:8080"
+
 export const AdminRole = "Admin";
 export const ProblemSetterRole = "ProblemSetter";
 export const ContestantRole = "Contestant";
