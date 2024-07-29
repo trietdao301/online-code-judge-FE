@@ -24,7 +24,7 @@ import { useLayoutContext } from "../contexts/LayoutContext";
 import { useAuth } from "../contexts/AuthContext";
 import { ProblemSetterRole, AdminRole, ContestantRole } from "../services";
 const { Header, Content, Footer, Sider } = Layout;
-
+import { Analytics } from '@vercel/analytics/react';
 type MenuItem = Required<MenuProps>["items"][number];
 
 function getItem(
@@ -157,7 +157,7 @@ const App: React.FC = () => {
             }}
           >
             <Outlet />
-            
+            <Analytics/>
           </div>
         </Content>
       </Layout>
