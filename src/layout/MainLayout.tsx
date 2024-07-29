@@ -23,8 +23,10 @@ import { Outlet, useNavigate } from "react-router-dom";
 import { useLayoutContext } from "../contexts/LayoutContext";
 import { useAuth } from "../contexts/AuthContext";
 import { ProblemSetterRole, AdminRole, ContestantRole } from "../services";
-const { Header, Content, Footer, Sider } = Layout;
 import { Analytics } from '@vercel/analytics/react';
+
+
+const { Header, Content, Footer, Sider } = Layout;
 type MenuItem = Required<MenuProps>["items"][number];
 
 function getItem(
