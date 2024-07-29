@@ -10,7 +10,6 @@ import { CustomHeader } from "../components/CustomHeader";
 import { MenuItem } from "../components/MenuItem";
 import { NavLink, Outlet } from "react-router-dom";
 import "./AuthLayout.css";
-import { Analytics } from '@vercel/analytics/react';
 
 const { Header, Content, Footer, Sider } = Layout;
 const { Title } = Typography;
@@ -81,7 +80,7 @@ const AuthLayout: React.FC = () => {
               <NavLink to="/register">Register</NavLink>
             </nav>
             <Outlet />
-            <Analytics />
+    
           </div>
         </Content>
       </Layout>
