@@ -3,8 +3,8 @@ import axios from "axios";
 import { error } from "console";
 import configData from "../config.json";
 
-const BASE_URL =  "http://localhost:8080";
-//const BASE_URL = "https://coodbox.com";
+//const BASE_URL =  "http://localhost:8080";
+const BASE_URL = "https://coodbox.com";
 export const AdminRole = "Admin";
 export const ProblemSetterRole = "ProblemSetter";
 export const ContestantRole = "Contestant";

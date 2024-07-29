@@ -2,8 +2,8 @@ import { message } from "antd";
 import axios from "axios";
 import configData from "../config.json";
 
-const BASE_URL =  "http://localhost:8080";
-//const BASE_URL = "https://coodbox.com";
+//const BASE_URL =  "http://localhost:8080";
+const BASE_URL = "https://coodbox.com";
 export type GetSubmissionSnippetRequest = {
   SubmissionSnippetUUID: string;
 };
