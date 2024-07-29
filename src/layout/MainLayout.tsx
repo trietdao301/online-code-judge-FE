@@ -23,6 +23,7 @@ import { Outlet, useNavigate } from "react-router-dom";
 import { useLayoutContext } from "../contexts/LayoutContext";
 import { useAuth } from "../contexts/AuthContext";
 import { ProblemSetterRole, AdminRole, ContestantRole } from "../services";
+import { Analytics } from "@vercel/analytics/react";
 const { Header, Content, Footer, Sider } = Layout;
 
 type MenuItem = Required<MenuProps>["items"][number];
@@ -157,6 +158,7 @@ const App: React.FC = () => {
             }}
           >
             <Outlet />
+            <Analytics />
           </div>
         </Content>
       </Layout>
