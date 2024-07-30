@@ -54,7 +54,7 @@ export const CustomHeader: React.FC<CustomHeaderProps> = ({ collapsed }) => {
       </div>
 
       <div className={collapsed ? "header-title-collasped" : "header-title"}>
-        Cobox
+        Coodbox
       </div>
     </div>
   );
