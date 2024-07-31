@@ -63,7 +63,7 @@ const AuthLayout: React.FC = () => {
               height: 64,
             }}
           ></Button>
-          Coodbox
+        
         </Header>
         <Content style={{ margin: "24px 16px 0" }}>
           <div
