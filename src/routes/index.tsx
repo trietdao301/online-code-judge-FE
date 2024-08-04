@@ -55,7 +55,7 @@ export const router = createBrowserRouter([
             },
 
             Tabs: {
-              colorPrimary: "#eb2f96",
+              colorPrimary: "#ffcf89",
               colorText: "#FFFFFF",
               algorithm: theme.darkAlgorithm,
             },

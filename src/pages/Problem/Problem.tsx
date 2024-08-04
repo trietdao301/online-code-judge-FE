@@ -51,22 +51,8 @@ export default function Problem() {
 
   return (
     <div className={"problem-container"}>
-      <ConfigProvider
-        theme={{
-          // 1. Use dark algorithm
-
-          token: {
-            // Seed Token
-            colorPrimary: "#000E2E",
-            borderRadius: 2,
-
-            colorText: "#FFFFFF",
-          },
-        }}
-      >
         <LeftContainer />
         <RightContainer />
-      </ConfigProvider>
     </div>
   );
 }
